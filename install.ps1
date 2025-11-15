@@ -151,24 +151,6 @@ if (-not (Test-PowerShellVersion)) {
 else {
   Write-Success
 }
-if (-not (Test-Admin)) {
-  Write-Unsuccess
-  Write-Warning -Message "The script was run as administrator. This can result in problems with the installation process or unexpected behavior. Do not continue if you do not know what you are doing."
-  $Host.UI.RawUI.Flushinputbuffer()
-  $choices = [System.Management.Automation.Host.ChoiceDescription[]] @(
-    (New-Object System.Management.Automation.Host.ChoiceDescription '&Yes', 'Abort installation.'),
-    (New-Object System.Management.Automation.Host.ChoiceDescription '&No', 'Resume installation.')
-  )
-  $choice = $Host.UI.PromptForChoice('', 'Do you want to abort the installation process?', $choices, 0)
-  if ($choice -eq 0) {
-    Write-Host -Object 'spicetify installation aborted' -ForegroundColor 'Yellow'
-    Pause
-    exit
-  }
-}
-else {
-  Write-Success
-}
 #endregion Checks
 
 #region Spicetify
